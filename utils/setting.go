@@ -1,12 +1,12 @@
 package utils
 
 import (
-	"log"
 	"gopkg.in/ini.v1"
+	"log"
 )
 
 var (
-	AppMode string
+	AppMode  string
 	HttpPort string
 
 	Db         string
@@ -17,19 +17,19 @@ var (
 	DbName     string
 )
 
-func init(){
+func init() {
 	f, err := ini.Load("config/config.ini")
 	if err != nil {
-		log.Println("Config  error:",err)
+		log.Println("Config  error:", err)
 	}
 
 	AppMode = f.Section("server").Key("AppMode").MustString("debug")
-	HttpPort = f.Section("server").Key("HttpPort").MustString(":3000")
-	
-	Db = f.Section("database").Key("Db").MustString("debug")
+	HttpPort = f.Section("server").Key("HttpPort").MustString(":3001")
+
+	Db = f.Section("database").Key("Db").MustString("mysql")
 	DbHost = f.Section("database").Key("DbHost").MustString("localhost")
-	DbPort = f.Section("database").Key("DbPort").MustString("3306")
-	DbUser = f.Section("database").Key("DbUser").MustString("ginblog")
+	DbPort = f.Section("database").Key("DbPort").MustString("3307")
+	DbUser = f.Section("database").Key("DbUser").MustString("root")
 	DbPassWord = f.Section("database").Key("DbPassWord").MustString("admin123")
 	DbName = f.Section("database").Key("DbName").MustString("ginblog")
 
