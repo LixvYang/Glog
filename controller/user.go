@@ -3,8 +3,8 @@ package controller
 import "github.com/gin-gonic/gin"
 
 // Check if user exist
-func ExistUser(c *gin.Context)  {
-	//
+func CheckUser(c *gin.Context)  {
+	//var 
 }
 
 
