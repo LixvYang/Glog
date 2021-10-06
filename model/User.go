@@ -114,7 +114,7 @@ func DeleteUser(id int) int {
 	var user User
 	err = db.Where("id = ? ", id).Delete(&user).Error
 	if err != nil {
-		return errmsg.ERROR
+		return errmsg.ERROR_USER_NOT_EXIST
 	}
 	return errmsg.SUCCSE
 }
