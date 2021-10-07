@@ -39,7 +39,7 @@ func AddUser(c *gin.Context) {
 }
 
 // Get user
-func GetUser(c *gin.Context) {
+func GetUsers(c *gin.Context) {
 	pageSize, _ := strconv.Atoi(c.Query("pagesize"))
 	pageNum, _ := strconv.Atoi(c.Query("pagenum"))
 	username := c.Query("username")
@@ -66,7 +66,7 @@ func GetUser(c *gin.Context) {
 }
 
 // Exit user
-func ExitUser(c *gin.Context) {
+func EditUser(c *gin.Context) {
 	var user model.User
 	id, _ := strconv.Atoi(c.Param("id"))
 	_ = c.ShouldBindJSON(&user)

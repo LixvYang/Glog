@@ -8,6 +8,7 @@ import (
 var (
 	AppMode  string
 	HttpPort string
+	JwtKey	 string
 
 	Db         string
 	DbHost     string
@@ -15,6 +16,11 @@ var (
 	DbUser     string
 	DbPassWord string
 	DbName     string
+
+	AccessKey  string
+	SecretKey  string
+	Bucket     string
+	QiniuSever string
 )
 
 func init() {
@@ -24,7 +30,8 @@ func init() {
 	}
 
 	AppMode = f.Section("server").Key("AppMode").MustString("debug")
-	HttpPort = f.Section("server").Key("HttpPort").MustString(":3001")
+	HttpPort = f.Section("server").Key("HttpPort").MustString(":3000")
+	JwtKey = f.Section("server").Key("JwtKey").MustString("89js82js72")
 
 	Db = f.Section("database").Key("Db").MustString("mysql")
 	DbHost = f.Section("database").Key("DbHost").MustString("localhost")
@@ -33,4 +40,8 @@ func init() {
 	DbPassWord = f.Section("database").Key("DbPassWord").MustString("admin123")
 	DbName = f.Section("database").Key("DbName").MustString("ginblog")
 
+	AccessKey = f.Section("qiniu").Key("AccessKey").String()
+	SecretKey = f.Section("qiniu").Key("SecretKey").String()
+	Bucket = f.Section("qiniu").Key("Bucket").String()
+	QiniuSever = f.Section("qiniu").Key("QiniuSever").String()
 }
