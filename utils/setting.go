@@ -8,6 +8,7 @@ import (
 var (
 	AppMode  string
 	HttpPort string
+	JwtKey	 string
 
 	Db         string
 	DbHost     string
@@ -24,7 +25,8 @@ func init() {
 	}
 
 	AppMode = f.Section("server").Key("AppMode").MustString("debug")
-	HttpPort = f.Section("server").Key("HttpPort").MustString(":3001")
+	HttpPort = f.Section("server").Key("HttpPort").MustString(":3000")
+	JwtKey = f.Section("server").Key("JwtKey").MustString("89js82js72")
 
 	Db = f.Section("database").Key("Db").MustString("mysql")
 	DbHost = f.Section("database").Key("DbHost").MustString("localhost")
