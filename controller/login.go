@@ -79,5 +79,4 @@ func setToken(c *gin.Context, user model.User) {
 		"message": errmsg.GetErrMsg(200),
 		"token":   token,
 	})
-	return
 }

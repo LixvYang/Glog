@@ -30,6 +30,9 @@ func InitRouter() {
 		auth.POST("article/add", controller.AddArticle)
 		auth.PUT("article/:id", controller.EditArt)
 		auth.DELETE("article/:id", controller.DeleteArt)
+
+		// 上传文件
+		auth.POST("upload", controller.UpLoad)
 	}
 
 	router := r.Group("api/v1")
