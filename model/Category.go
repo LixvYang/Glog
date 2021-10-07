@@ -31,28 +31,32 @@ func CreateCate(cate *Category) (code int) {
 	return errmsg.SUCCSE
 }
 
+//getcate info
+func GetCateInfo(id int) (Category, int) {
+	var cate Category
+	db.Where("id = ?", id).First(&cate)
+	return cate, errmsg.SUCCSE
+}
+
 //get cate list
-func GetCate(pageSize,pageNum int) ([]Category,int64) {
+func GetCate(pageSize, pageNum int) ([]Category, int64) {
 	var cate []Category
 	var total int64
-	err := db.Find(&cate).Limit(pageSize).Offset(((pageNum)-1) * pageSize).Error
+	err := db.Find(&cate).Limit(pageSize).Offset(((pageNum) - 1) * pageSize).Error
 	db.Model(&cate).Count(&total)
 	if err != nil && err != gorm.ErrRecordNotFound {
-		return cate,0
+		return cate, 0
 	}
 	return cate, total
 }
 
 //exit cate
-func ExitCate(id int,data *Category) int {
-	var (
-		cate Category
-		maps = make(map[string]interface{})
-	)
+func EditCate(id int, data *Category) int {
+	var cate Category
+	var maps = make(map[string]interface{})
+	maps["name"] = data.Name
 
-	maps["name"] = cate.Name
-
-	err = db.Model(&cate).Where("id = ?",cate).Updates(maps).Error
+	err = db.Model(&cate).Where("id = ? ", id).Updates(maps).Error
 	if err != nil {
 		return errmsg.ERROR
 	}
@@ -62,6 +66,7 @@ func ExitCate(id int,data *Category) int {
 //delete cate
 func DeleteCate(id int) int {
 	var cate Category
+
 	err = db.Where("id = ? ", id).Delete(&cate).Error
 	if err != nil {
 		return errmsg.ERROR

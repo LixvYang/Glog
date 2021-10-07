@@ -13,11 +13,17 @@ func InitRouter()  {
 
 	router := r.Group("api/v1")
 	{
+		//user api
 		router.POST("user/add",controller.AddUser)
 		router.GET("users",controller.GetUser)
 		router.PUT("user/:id",controller.ExitUser)
 		router.DELETE("user/:id",controller.DeleteUser)
 	
+		//category api
+		router.GET("category",controller.GetCate)
+		router.POST("category/add",controller.AddCategory)
+		router.PUT("category/:id",controller.EditCate)
+		router.DELETE("category/:id",controller.DeleteCate)
 	}
 
 	
