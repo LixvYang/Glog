@@ -3,6 +3,7 @@ package controller
 import (
 	"glog/model"
 	"glog/utils/errmsg"
+	"glog/utils/validator"
 	"net/http"
 	"strconv"
 
@@ -19,23 +20,34 @@ func CheckUser(c *gin.Context) {
 // Add user
 func AddUser(c *gin.Context) {
 	//todo
-	var user model.User
-	_ = c.ShouldBindJSON(&user)
+	var data model.User
+	var msg string
+	var validCode int
+	_ = c.ShouldBindJSON(&data)
 
-	code = model.CheckUser(user.Username)
+	msg, validCode = validator.Validate(&data)
+	if validCode != errmsg.SUCCSE {
+		c.JSON(
+			http.StatusOK, gin.H{
+				"status":  validCode,
+				"message": msg,
+			},
+		)
+		c.Abort()
+		return
+	}
+
+	code := model.CheckUser(data.Username)
 	if code == errmsg.SUCCSE {
-		model.CreateUser(&user)
+		model.CreateUser(&data)
 	}
 
-	if code == errmsg.ERROR_USERNAME_USED {
-		code = errmsg.ERROR_USERNAME_USED
-	}
-
-	c.JSON(http.StatusOK, gin.H{
-		"status":  code,
-		"data":    user,
-		"message": errmsg.GetErrMsg(code),
-	})
+	c.JSON(
+		http.StatusOK, gin.H{
+			"status":  code,
+			"message": errmsg.GetErrMsg(code),
+		},
+	)
 }
 
 // Get user

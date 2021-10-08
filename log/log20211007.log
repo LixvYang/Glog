@@ -1,0 +1,7 @@
+time="2021-10-07 21:50:28" level=info Agent=PostmanRuntime/7.26.10 DataSize=68 HostName=LAPTOP-BB441EFS Ip="::1" Method=GET Path="/api/v1/users?pageSize&pageNum" SpendTime="0 ms" status=200
+time="2021-10-07 21:51:15" level=warning Agent=PostmanRuntime/7.26.10 DataSize=0 HostName=LAPTOP-BB441EFS Ip="::1" Method=GET Path="/api/v1/users?pageSize&pageNum" SpendTime="0 ms" status=404
+time="2021-10-07 21:51:24" level=warning Agent=PostmanRuntime/7.26.10 DataSize=0 HostName=LAPTOP-BB441EFS Ip="::1" Method=GET Path=/api/v1/users SpendTime="0 ms" status=404
+time="2021-10-07 21:51:46" level=info Agent=PostmanRuntime/7.26.10 DataSize=68 HostName=LAPTOP-BB441EFS Ip="::1" Method=GET Path=/api/v1/admin/users SpendTime="0 ms" status=200
+time="2021-10-07 21:52:42" level=info Agent=PostmanRuntime/7.26.10 DataSize=51 HostName=LAPTOP-BB441EFS Ip="::1" Method=GET Path=/api/v1/users SpendTime="40 ms" status=200
+time="2021-10-07 21:53:49" level=info Agent=PostmanRuntime/7.26.10 DataSize=253 HostName=LAPTOP-BB441EFS Ip="::1" Method=POST Path=/api/v1/user/add SpendTime="118 ms" status=200
+time="2021-10-07 22:04:26" level=info Agent=PostmanRuntime/7.26.10 DataSize=67 HostName=LAPTOP-BB441EFS Ip="::1" Method=POST Path=/api/v1/user/add SpendTime="1 ms" status=200

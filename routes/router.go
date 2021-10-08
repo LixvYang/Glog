@@ -10,7 +10,10 @@ import (
 
 func InitRouter() {
 	gin.SetMode(utils.AppMode)
-	r := gin.Default()
+	r := gin.New()
+	r.Use(middleware.Log())
+	r.Use(middleware.Cors())
+	r.Use(gin.Recovery())
 
 	auth := r.Group("api/v1")
 	auth.Use(middleware.JwtToken())
@@ -39,7 +42,7 @@ func InitRouter() {
 	{
 		//user api
 		router.POST("user/add", controller.AddUser)
-		auth.GET("users", controller.GetUsers)
+		router.GET("users", controller.GetUsers)
 		//文章分类模块
 		router.GET("category", controller.GetCate)
 		router.GET("category/:id", controller.GetCateInfo)
