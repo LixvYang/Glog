@@ -51,7 +51,7 @@ func InitRouter() {
 		router.GET("article", controller.GetArt)
 		router.GET("article/list/:id", controller.GetCateArt)
 		router.GET("article/info/:id", controller.GetArtInfo)
-		router.POST("login",controller.Login)
+		router.POST("login", controller.Login)
 
 	}
 
