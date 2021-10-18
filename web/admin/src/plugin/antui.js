@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Button, FormModel, Input, Icon, message } from 'ant-design-vue'
+import { Button, FormModel, Input, Icon, message, Layout, Menu } from 'ant-design-vue'
 
 Vue.prototype.$message = message
 
@@ -13,3 +13,5 @@ Vue.use(Button)
 Vue.use(Input)
 Vue.use(FormModel)
 Vue.use(Icon)
+Vue.use(Layout)
+Vue.use(Menu)
