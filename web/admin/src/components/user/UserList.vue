@@ -11,7 +11,7 @@
         </a-col>
       </a-row>
 
-      <a-table rowKey="username" :columns="columns" :pagination="paginationOption" :dataSource="userList" bordered>
+      <a-table rowKey="username" :columns="columns" :pagination="paginationOption" :dataSource="userList" bordered @change="handleTableChange">
           <span slot="role" slot-scope="role">{{role == 1 ? '管理员':'订阅者'}}</span>
           <template slot="action">
             <div class="actionSlot">
@@ -65,19 +65,14 @@ export default {
         defaultPageSize: 2,
         total: 0,
         showSizeChanger: true,
-        showTotal: (total) => `共${total}条`,
-        onChange: (current, pageSize) => {
-          this.paginationOption.defaultCurrent = current
-          this.paginationOption.defaultPageSize = pageSize
-          this.getUserList()
-        },
-        onshowSizeChange: (current, size) => {
-          this.paginationOption.defaultCurrent = current
-          this.paginationOption.defaultPageSize = size
-          this.getUserList()
-        }
+        showTotal: (total) => `共${total}条`
       },
       userList: [],
+      queryParam: {
+        pagesize: 5,
+        pagenum: 1
+      },
+      visible: false,
       columns
     }
   },
@@ -88,8 +83,8 @@ export default {
     async getUserList () {
       const { data: res } = await this.$http.get('users', {
         params: {
-          pageSize: this.paginationOption.defaultPageSize,
-          pagenum: this.paginationOption.defaultCurrent
+          pageSize: this.queryParam.pagesize,
+          pagenum: this.queryParam.pagenum
         }
       })
       if (res.status !== 200) return this.$message.error(res.message)
